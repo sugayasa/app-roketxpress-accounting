@@ -1,5 +1,10 @@
 <?php
 
+require_once ROOTPATH . '../vendor/autoload.php';
+use Dotenv\Dotenv;
+$dotenv	=	Dotenv::createImmutable(ROOTPATH);
+$dotenv->load();
+
 /*
  | --------------------------------------------------------------------
  | App Namespace
@@ -157,26 +162,26 @@ $arrYear    =	array(
     array("ID"=>$lastYear, "VALUE"=>$lastYear)
 );
 
-defined('APP_NAME')                             || define('APP_NAME', getenv('APP_NAME') ?: 'Accounting');
-defined('APP_TIMEZONE')                         || define('APP_TIMEZONE', getenv('APP_TIMEZONE') ?: 'Asia/Jakarta');
-defined('MAX_INACTIVE_SESSION_MINUTES')         || define('MAX_INACTIVE_SESSION_MINUTES', getenv('MAX_INACTIVE_SESSION_MINUTES') ?: 60);
+defined('APP_NAME')                             || define('APP_NAME', $_ENV['APP_NAME'] ?: 'Accounting');
+defined('APP_TIMEZONE')                         || define('APP_TIMEZONE', $_ENV['APP_TIMEZONE'] ?: 'Asia/Jakarta');
+defined('MAX_INACTIVE_SESSION_MINUTES')         || define('MAX_INACTIVE_SESSION_MINUTES', $_ENV['MAX_INACTIVE_SESSION_MINUTES'] ?: 60);
 
-defined('DEFAULT_REFF_NUMBER_OPENING_BALANCE')  || define('DEFAULT_REFF_NUMBER_OPENING_BALANCE', getenv('DEFAULT_REFF_NUMBER_OPENING_BALANCE') ?: 'AA0000000001');
-defined('DEFAULT_VENDOR_PIN')				    || define('DEFAULT_VENDOR_PIN', getenv('DEFAULT_VENDOR_PIN') ?: 1111);
-defined('DEFAULT_DRIVER_PIN')				    || define('DEFAULT_DRIVER_PIN', getenv('DEFAULT_DRIVER_PIN') ?: 1111);
+defined('DEFAULT_REFF_NUMBER_OPENING_BALANCE')  || define('DEFAULT_REFF_NUMBER_OPENING_BALANCE', $_ENV['DEFAULT_REFF_NUMBER_OPENING_BALANCE'] ?: 'AA0000000001');
+defined('DEFAULT_VENDOR_PIN')				    || define('DEFAULT_VENDOR_PIN', $_ENV['DEFAULT_VENDOR_PIN'] ?: 1111);
+defined('DEFAULT_DRIVER_PIN')				    || define('DEFAULT_DRIVER_PIN', $_ENV['DEFAULT_DRIVER_PIN'] ?: 1111);
 
 defined('PRODUCTION_URL')						|| define('PRODUCTION_URL', $productionURL);
-defined('BASE_URL')                             || define('BASE_URL', getenv('BASE_URL') ?: 'https://example.com/');
-defined('BASE_URL_ADMIN_APPS')                  || define('BASE_URL_ADMIN_APPS', getenv('BASE_URL_ADMIN_APPS') ?: 'https://example.com/');
-defined('BASE_URL_MOBILE_APPS')                 || define('BASE_URL_MOBILE_APPS', getenv('BASE_URL_MOBILE_APPS') ?: 'https://example.com/');
-defined('BASE_URL_ASSETS')                      || define('BASE_URL_ASSETS', str_replace(array("http:", "https:"), "", getenv('BASE_URL_ASSETS') ?: 'https://example.com/'));
-defined('BASE_URL_ASSETS_FULL_PATH')            || define('BASE_URL_ASSETS_FULL_PATH', BASE_URL_ASSETS.getenv('BASE_URL_ASSETS_PATH') ?: 'example.com/');
-defined('BASE_URL_ASSETS_IMG')                  || define('BASE_URL_ASSETS_IMG', BASE_URL_ASSETS_FULL_PATH.getenv('BASE_URL_ASSETS_IMG_PATH') ?: 'img/');
-defined('BASE_URL_ASSETS_IMG_CALENDAR')         || define('BASE_URL_ASSETS_IMG_CALENDAR', BASE_URL_ASSETS_IMG.getenv('BASE_URL_ASSETS_IMG_CALENDAR_PATH') ?: 'calendar/');
-defined('BASE_URL_ASSETS_CSS')                  || define('BASE_URL_ASSETS_CSS', BASE_URL_ASSETS_FULL_PATH.getenv('BASE_URL_ASSETS_CSS_PATH') ?: 'css/');
-defined('BASE_URL_ASSETS_JS')                   || define('BASE_URL_ASSETS_JS', BASE_URL_ASSETS_FULL_PATH.getenv('BASE_URL_ASSETS_JS_PATH') ?: 'js/');
-defined('BASE_URL_ASSETS_FONT')                 || define('BASE_URL_ASSETS_FONT', BASE_URL_ASSETS_FULL_PATH.getenv('BASE_URL_ASSETS_FONT_PATH') ?: 'font/');
-defined('BASE_URL_ASSETS_SOUND')                || define('BASE_URL_ASSETS_SOUND', BASE_URL_ASSETS_FULL_PATH.getenv('BASE_URL_ASSETS_SOUND_PATH') ?: 'sound/');
+defined('BASE_URL')                             || define('BASE_URL', $_ENV['BASE_URL'] ?: 'https://example.com/');
+defined('BASE_URL_ADMIN_APPS')                  || define('BASE_URL_ADMIN_APPS', $_ENV['BASE_URL_ADMIN_APPS'] ?: 'https://example.com/');
+defined('BASE_URL_MOBILE_APPS')                 || define('BASE_URL_MOBILE_APPS', $_ENV['BASE_URL_MOBILE_APPS'] ?: 'https://example.com/');
+defined('BASE_URL_ASSETS')                      || define('BASE_URL_ASSETS', str_replace(array("http:", "https:"), "", $_ENV['BASE_URL_ASSETS'] ?: 'https://example.com/'));
+defined('BASE_URL_ASSETS_FULL_PATH')            || define('BASE_URL_ASSETS_FULL_PATH', BASE_URL_ASSETS.$_ENV['BASE_URL_ASSETS_PATH'] ?: 'example.com/');
+defined('BASE_URL_ASSETS_IMG')                  || define('BASE_URL_ASSETS_IMG', BASE_URL_ASSETS_FULL_PATH.$_ENV['BASE_URL_ASSETS_IMG_PATH'] ?: 'img/');
+defined('BASE_URL_ASSETS_IMG_CALENDAR')         || define('BASE_URL_ASSETS_IMG_CALENDAR', BASE_URL_ASSETS_IMG.$_ENV['BASE_URL_ASSETS_IMG_CALENDAR_PATH'] ?: 'calendar/');
+defined('BASE_URL_ASSETS_CSS')                  || define('BASE_URL_ASSETS_CSS', BASE_URL_ASSETS_FULL_PATH.$_ENV['BASE_URL_ASSETS_CSS_PATH'] ?: 'css/');
+defined('BASE_URL_ASSETS_JS')                   || define('BASE_URL_ASSETS_JS', BASE_URL_ASSETS_FULL_PATH.$_ENV['BASE_URL_ASSETS_JS_PATH'] ?: 'js/');
+defined('BASE_URL_ASSETS_FONT')                 || define('BASE_URL_ASSETS_FONT', BASE_URL_ASSETS_FULL_PATH.$_ENV['BASE_URL_ASSETS_FONT_PATH'] ?: 'font/');
+defined('BASE_URL_ASSETS_SOUND')                || define('BASE_URL_ASSETS_SOUND', BASE_URL_ASSETS_FULL_PATH.$_ENV['BASE_URL_ASSETS_SOUND_PATH'] ?: 'sound/');
 
 defined('URL_BANK_LOGO')                        || define('URL_BANK_LOGO', BASE_URL_ADMIN_APPS."foto/bankLogo/");
 defined('URL_COLLECT_PAYMENT_RECEIPT')          || define('URL_COLLECT_PAYMENT_RECEIPT', BASE_URL_MOBILE_APPS."collectPayment/imageSettlementCollectPayment/");
@@ -190,15 +195,15 @@ defined('OPTION_MINUTEINTERVAL_STRARR')         || define('OPTION_MINUTEINTERVAL
 defined('OPTION_MONTH')						    || define('OPTION_MONTH', json_encode($arrMonth));
 defined('OPTION_YEAR')						    || define('OPTION_YEAR', json_encode($arrYear));
 
-defined('PATH_STORAGE')                         || define('PATH_STORAGE', getenv('PATH_STORAGE') ?: 'storage/');
-defined('PATH_STORAGE_COLLECT_PAYMENT_RECEIPT')	|| define('PATH_STORAGE_COLLECT_PAYMENT_RECEIPT', PATH_STORAGE.getenv('PATH_STORAGE_COLLECT_PAYMENT_RECEIPT') ?: 'collectPayment/');
-defined('PATH_STORAGE_TEMP_UPLOAD')	            || define('PATH_STORAGE_TEMP_UPLOAD', PATH_STORAGE.getenv('PATH_STORAGE_TEMP_UPLOAD') ?: 'temp/');
+defined('PATH_STORAGE')                         || define('PATH_STORAGE', $_ENV['PATH_STORAGE'] ?: 'storage/');
+defined('PATH_STORAGE_COLLECT_PAYMENT_RECEIPT')	|| define('PATH_STORAGE_COLLECT_PAYMENT_RECEIPT', PATH_STORAGE.$_ENV['PATH_STORAGE_COLLECT_PAYMENT_RECEIPT'] ?: 'collectPayment/');
+defined('PATH_STORAGE_TEMP_UPLOAD')	            || define('PATH_STORAGE_TEMP_UPLOAD', PATH_STORAGE.$_ENV['PATH_STORAGE_TEMP_UPLOAD'] ?: 'temp/');
 
-defined('FIREBASE_PRIVATE_KEY_PATH')            || define('FIREBASE_PRIVATE_KEY_PATH', APPPATH . getenv('FIREBASE_PRIVATE_KEY_PATH') ?: 'default.json');
-defined('FIREBASE_RTDB_URI')                    || define('FIREBASE_RTDB_URI', getenv('FIREBASE_RTDB_URI') ?: 'https://example.com');
-defined('FIREBASE_RTDB_PROJECT_ID')             || define('FIREBASE_RTDB_PROJECT_ID', getenv('FIREBASE_RTDB_PROJECT_ID') ?: 'default');
-defined('FIREBASE_RTDB_MAINREF_NAME')           || define('FIREBASE_RTDB_MAINREF_NAME', getenv('FIREBASE_RTDB_MAINREF_NAME') ?: 'default/');
-defined('FIREBASE_RTDB_WEBREF_NAME')            || define('FIREBASE_RTDB_WEBREF_NAME', getenv('FIREBASE_RTDB_WEBREF_NAME') ?: 'default/');
+defined('FIREBASE_PRIVATE_KEY_PATH')            || define('FIREBASE_PRIVATE_KEY_PATH', APPPATH . $_ENV['FIREBASE_PRIVATE_KEY_PATH'] ?: 'default.json');
+defined('FIREBASE_RTDB_URI')                    || define('FIREBASE_RTDB_URI', $_ENV['FIREBASE_RTDB_URI'] ?: 'https://example.com');
+defined('FIREBASE_RTDB_PROJECT_ID')             || define('FIREBASE_RTDB_PROJECT_ID', $_ENV['FIREBASE_RTDB_PROJECT_ID'] ?: 'default');
+defined('FIREBASE_RTDB_MAINREF_NAME')           || define('FIREBASE_RTDB_MAINREF_NAME', $_ENV['FIREBASE_RTDB_MAINREF_NAME'] ?: 'default/');
+defined('FIREBASE_RTDB_WEBREF_NAME')            || define('FIREBASE_RTDB_WEBREF_NAME', $_ENV['FIREBASE_RTDB_WEBREF_NAME'] ?: 'default/');
 
 defined('MAIL_CSSSTYLE')				        || define('MAIL_CSSSTYLE', "<style>table{border-spacing:0;border-collapse:collapse;}
     th{padding:0;}

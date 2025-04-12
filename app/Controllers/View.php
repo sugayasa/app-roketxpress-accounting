@@ -141,6 +141,8 @@ class View extends ResourceController
 
             foreach($arrIdAccountsCashFlow as $idAccountsCashFlow){
                 $basicDetailAccount             =   $chartOfAccountModel->getBasicDetailAccount($idAccountsCashFlow);
+
+                if(!$basicDetailAccount) continue;
                 $idAccountParent                =   $basicDetailAccount['IDACCOUNTPARENT'];
                 $levelAccountCashFlow           =   $basicDetailAccount['LEVEL'];
                 $detailAccount                  =   $chartOfAccountModel->getDetailAccount($levelAccountCashFlow, $idAccountsCashFlow);

@@ -237,7 +237,9 @@ class ChartOfAccountModel extends Model
         $this->where('IDACCOUNT', $idAccount);
         $this->limit(1);
 
-        return $this->get()->getRowArray();
+        $result =   $this->first();
+        if(is_null($result)) return false;
+        return $result;
 	}
 
     public function getDetailAccount($accountLevel, $idAccount)
